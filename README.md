@@ -98,8 +98,56 @@ hackethon/
    - Frontend: http://localhost:3000
    - Backend API: http://localhost:8000
    - API Documentation: http://localhost:8000/docs
-   - Qdrant Dashboard: http://localhost:6333/dashboard
-   - MySQL: localhost:3306
+
+## Database Setup
+
+The application uses MySQL for persistent data storage. The database setup is automated, but you can also set it up manually:
+
+### Automated Setup (Recommended)
+
+```bash
+cd backend
+./start.sh
+```
+
+### Manual Database Setup
+
+```bash
+cd backend
+
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Setup database (creates tables and imports schema)
+python setup_database.py
+
+# Start the server
+python main.py
+```
+
+### Database Configuration
+
+The database configuration is managed through environment variables in `.env`:
+
+- `DB_HOST=localhost`
+- `DB_PORT=3306`
+- `DB_USER=root`
+- `DB_PASSWORD=your_password`
+- `DB_NAME=hackathon_db`
+
+### Database Schema
+
+The application creates the following tables:
+
+- `tickets` - Support ticket management
+- `users` - User account management
+- `chat_sessions` - Chat session data storage
+  - Qdrant Dashboard: http://localhost:6333/dashboard
+  - MySQL: localhost:3306
 
 ### Manual Development (without Docker)
 
