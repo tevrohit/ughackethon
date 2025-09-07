@@ -127,18 +127,37 @@ Copy `env.example` to `.env` and configure:
 - ✅ Multi-page routing (Home, Mentor, Counselor)
 - ✅ API endpoints for all core functionality
 
-### TODO: Integration Tasks
+### Completed Integration Tasks
 
-- [ ] Connect ChatWidget to FastAPI backend
-- [ ] Implement Ollama integration for AI responses
-- [ ] Set up MySQL ORM models and CRUD operations
-- [ ] Configure Qdrant for embedding storage and retrieval
-- [ ] Add user authentication and session management
-- [ ] Implement real-time notifications/nudges
-- [ ] Add error handling and logging
-- [ ] Create database migrations
-- [ ] Add unit and integration tests
+- ✅ Connect ChatWidget to FastAPI backend
+- ✅ Implement Ollama integration for AI responses
+- ✅ Set up MySQL ORM models and CRUD operations
+- ✅ Configure Qdrant for embedding storage and retrieval
+- ✅ Add user authentication and session management
+- ✅ Implement real-time notifications/nudges
+- ✅ Add error handling and logging
+- ✅ Create database migrations
+- ✅ Add unit and integration tests
 - [ ] Set up CI/CD pipeline
+
+## Screenshots
+
+The application features a modern, responsive interface with multiple pages and AI-powered functionality:
+
+### Home Page
+
+![Home Page](screenshots/Home.png)
+_Main landing page with navigation and overview of available features_
+
+### AI Mentor Interface
+
+![AI Mentor](screenshots/Ai-Mentor.png)
+_Interactive AI mentor chat interface with real-time responses powered by Ollama_
+
+### Custom Nudge System
+
+![Custom Nudge](screenshots/Custom%20nudge.png)
+_Personalized notification system for student engagement and support_
 
 ## Development Commands
 
