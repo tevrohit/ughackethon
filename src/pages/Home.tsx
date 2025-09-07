@@ -37,7 +37,7 @@ function Home() {
             <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-16">
               <Link 
                 to="/mentor"
-                className="w-full sm:w-auto px-12 py-5 bg-gradient-to-r from-blue-500 to-blue-600 text-blue font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 no-underline flex items-center justify-center text-lg"
+                className="w-full sm:w-auto px-12 py-5 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 no-underline flex items-center justify-center text-lg"
               >
                 <span className="mr-3 text-xl">🚀</span>
                 Start Learning Now
