@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar'
 
 interface Ticket {
   id: string
@@ -214,24 +214,7 @@ function Mentor() {
 
   return (
     <div className="min-h-screen gradient-green">
-      {/* Navigation Header */}
-      <nav className="nav-header shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-bold text-gray-900">Mentor Console</h1>
-            </div>
-            <div className="flex space-x-4">
-              <Link to="/" className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-md transition-colors">
-                Home
-              </Link>
-              <Link to="/counselor" className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-md transition-colors">
-                Counselor
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex gap-6">

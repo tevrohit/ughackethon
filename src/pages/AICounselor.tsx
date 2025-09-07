@@ -1,55 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import ChatWidget from '../components/ChatWidget'
+import Navbar from '../components/Navbar'
 
 function AICounselor() {
   return (
     <div className="min-h-screen gradient-purple">
-      {/* Navigation Header */}
-      <nav className="nav-header shadow-lg border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                </div>
-                <h1 className="text-xl font-bold text-gray-900">AI Counselor - Personal Support</h1>
-              </div>
-            </div>
-            <div className="hidden md:flex space-x-2">
-              <Link 
-                to="/" 
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all duration-200"
-              >
-                🏠 Home
-              </Link>
-              <Link 
-                to="/mentor" 
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-200"
-              >
-                🎓 Mentor Console
-              </Link>
-              <Link 
-                to="/counselor" 
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-all duration-200"
-              >
-                🔧 Nudge Designer
-              </Link>
-            </div>
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100">
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
