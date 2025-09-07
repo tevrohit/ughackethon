@@ -1,0 +1,17 @@
+USER_PROMPT:
+Context: {course_name} | module: {module_name} | user_lang: {user_lang} | user_id_hash: {user_hash}
+CONTEXT:
+{chunk_1_meta} - {chunk_1_text}
+...
+{chunk_k_meta} - {chunk_k_text}
+
+INSTRUCTION:
+Student question: "{student_question}"
+
+Task:
+1. Answer concisely with step-by-step explanation and at least one small example or micro-exercise.
+2. Add a short 1-2 question micro-quiz to practice (if relevant).
+3. Return sources as a list of DOC:{doc_id}:{chunk_id}.
+4. Provide two follow-up clarification questions.
+5. Output final block as valid JSON on the last line: 
+{"answer": "...", "sources":[{"doc":"doc_id","chunk":"chunk_id","score":0.92}], "followups":["...","..."], "escalate": false}

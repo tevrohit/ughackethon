@@ -1,0 +1,854 @@
+{
+	"info": {
+		"_postman_id": "hackathon-api-collection-2024",
+		"name": "Hackathon Project API Collection",
+		"description": "Complete API collection for the hackathon project including AI chat, embeddings, tickets, risk scoring, and observability endpoints.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "hackathon-2024"
+	},
+	"item": [
+		{
+			"name": "Health & Status",
+			"item": [
+				{
+					"name": "Root Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "Basic health check for the main API"
+					},
+					"response": []
+				},
+				{
+					"name": "Observability Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"description": "Comprehensive health check with service status"
+					},
+					"response": []
+				},
+				{
+					"name": "Detailed Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/observability/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"observability",
+								"health"
+							]
+						},
+						"description": "Detailed health check with metrics and component status"
+					},
+					"response": []
+				}
+			],
+			"description": "Health check and status endpoints"
+		},
+		{
+			"name": "AI Chat & RAG",
+			"item": [
+				{
+					"name": "AI Ask Question",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id_hash\": \"user_123_hash\",\n  \"course_id\": \"CS101\",\n  \"module_id\": \"deep_learning_fundamentals\",\n  \"question\": \"Can you explain what neural networks are and how they work?\",\n  \"lang\": \"English\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/ai/ask",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"ai",
+								"ask"
+							]
+						},
+						"description": "AI chat endpoint with RAG (Retrieval-Augmented Generation)"
+					},
+					"response": []
+				},
+				{
+					"name": "AI Ask - Hindi Question",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id_hash\": \"user_456_hash\",\n  \"course_id\": \"CS101\",\n  \"module_id\": \"machine_learning\",\n  \"question\": \"न्यूरल नेटवर्क क्या है और यह कैसे काम करता है?\",\n  \"lang\": \"Hindi\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/ai/ask",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"ai",
+								"ask"
+							]
+						},
+						"description": "AI chat in Hindi language"
+					},
+					"response": []
+				},
+				{
+					"name": "AI Ask - Escalation Scenario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id_hash\": \"user_789_hash\",\n  \"course_id\": \"CS102\",\n  \"module_id\": \"billing\",\n  \"question\": \"I need help with billing and want to request a refund for my course enrollment.\",\n  \"lang\": \"English\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/ai/ask",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"ai",
+								"ask"
+							]
+						},
+						"description": "AI chat that should trigger escalation to human support"
+					},
+					"response": []
+				},
+				{
+					"name": "AI Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/ai/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"ai",
+								"health"
+							]
+						},
+						"description": "Health check for AI service components"
+					},
+					"response": []
+				}
+			],
+			"description": "AI chat and question answering endpoints"
+		},
+		{
+			"name": "Embeddings & Vector Search",
+			"item": [
+				{
+					"name": "Upsert Document Embeddings",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"doc_id\": \"neural_networks_intro_v1\",\n  \"text\": \"Neural networks are computational models inspired by biological neural networks. They consist of interconnected nodes (neurons) that process information through weighted connections. Deep learning uses multiple layers of neural networks to learn complex patterns in data.\",\n  \"metadata\": {\n    \"source\": \"ml_textbook.pdf\",\n    \"page\": 42,\n    \"chapter\": \"Deep Learning Fundamentals\",\n    \"author\": \"Dr. Smith\",\n    \"tags\": [\"neural networks\", \"deep learning\", \"machine learning\"]\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/embeddings/upsert",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"embeddings",
+								"upsert"
+							]
+						},
+						"description": "Upload and process document for embedding generation"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Similar Documents",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"What are neural networks and how do they work?\",\n  \"k\": 5\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/embeddings/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"embeddings",
+								"search"
+							]
+						},
+						"description": "Search for similar documents using vector similarity"
+					},
+					"response": []
+				},
+				{
+					"name": "Embeddings Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/embeddings/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"embeddings",
+								"health"
+							]
+						},
+						"description": "Health check for embeddings service"
+					},
+					"response": []
+				}
+			],
+			"description": "Document embedding and vector search endpoints"
+		},
+		{
+			"name": "Tickets & Support",
+			"item": [
+				{
+					"name": "Create Support Ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_hash\": \"user_123_hash\",\n  \"course_id\": \"CS101\",\n  \"module_id\": \"deep_learning_fundamentals\",\n  \"title\": \"Cannot access course materials\",\n  \"description\": \"I'm having trouble accessing the course materials for module 1. The links are not working and I get a 404 error when I click on them.\",\n  \"priority\": \"medium\",\n  \"language\": \"English\",\n  \"attachments\": [\"screenshot1.png\", \"error_log.txt\"]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tickets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tickets"
+							]
+						},
+						"description": "Create a new support ticket"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Urgent Ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_hash\": \"urgent_user_456\",\n  \"course_id\": \"CS102\",\n  \"module_id\": \"assignments\",\n  \"title\": \"Assignment submission deadline issue\",\n  \"description\": \"The assignment submission portal is not working and the deadline is in 2 hours. This is urgent!\",\n  \"priority\": \"urgent\",\n  \"language\": \"English\",\n  \"attachments\": []\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tickets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tickets"
+							]
+						},
+						"description": "Create an urgent priority ticket"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Tickets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/tickets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tickets"
+							]
+						},
+						"description": "Retrieve all support tickets"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tickets - Filtered by Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/tickets?status_filter=open&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tickets"
+							],
+							"query": [
+								{
+									"key": "status_filter",
+									"value": "open"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Get tickets filtered by status"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tickets - Filtered by Priority",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/tickets?priority_filter=urgent&sla_filter=at_risk",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tickets"
+							],
+							"query": [
+								{
+									"key": "priority_filter",
+									"value": "urgent"
+								},
+								{
+									"key": "sla_filter",
+									"value": "at_risk"
+								}
+							]
+						},
+						"description": "Get urgent tickets that are at risk of SLA breach"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Ticket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/tickets/{{ticket_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								"{{ticket_id}}"
+							]
+						},
+						"description": "Get a specific ticket by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Ticket",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"assigned_to\": \"mentor_john_doe\",\n  \"notes\": \"Assigning to John for technical support expertise\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tickets/{{ticket_id}}/assign",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								"{{ticket_id}}",
+								"assign"
+							]
+						},
+						"description": "Assign a ticket to a mentor/agent"
+					},
+					"response": []
+				},
+				{
+					"name": "Resolve Ticket",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"resolution_notes\": \"Fixed the course material links. Issue was with the CDN configuration. All links are now working properly.\",\n  \"resolved_by\": \"mentor_john_doe\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tickets/{{ticket_id}}/resolve",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								"{{ticket_id}}",
+								"resolve"
+							]
+						},
+						"description": "Resolve a ticket with resolution notes"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Comment to Ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\": \"I've looked into this issue and it seems to be a server-side problem. Working on a fix and will update you shortly.\",\n  \"author\": \"mentor_john_doe\",\n  \"is_internal\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tickets/{{ticket_id}}/comment",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								"{{ticket_id}}",
+								"comment"
+							]
+						},
+						"description": "Add a comment to a ticket"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ticket Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/tickets/{{ticket_id}}/comments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								"{{ticket_id}}",
+								"comments"
+							]
+						},
+						"description": "Get all comments for a ticket"
+					},
+					"response": []
+				},
+				{
+					"name": "Tickets Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/tickets/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								"health"
+							]
+						},
+						"description": "Health check for tickets service"
+					},
+					"response": []
+				}
+			],
+			"description": "Support ticket management endpoints"
+		},
+		{
+			"name": "Risk Scoring",
+			"item": [
+				{
+					"name": "Calculate Risk Score - User ID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"user_123_hash\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/risk/score",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"risk",
+								"score"
+							]
+						},
+						"description": "Calculate risk score by fetching user events automatically"
+					},
+					"response": []
+				},
+				{
+					"name": "Calculate Risk Score - Direct Features",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"user_456_hash\",\n  \"features\": {\n    \"last_login_ts\": 1704067200.0,\n    \"quizzes_failed_last_3\": 2,\n    \"avg_watch_time\": 15.5,\n    \"assignments_missed\": 1,\n    \"ticket_sentiment\": -0.2\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/risk/score",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"risk",
+								"score"
+							]
+						},
+						"description": "Calculate risk score with direct feature input"
+					},
+					"response": []
+				},
+				{
+					"name": "High Risk Student Example",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"high_risk_student_789\",\n  \"features\": {\n    \"last_login_ts\": 1702000000.0,\n    \"quizzes_failed_last_3\": 4,\n    \"avg_watch_time\": 5.2,\n    \"assignments_missed\": 3,\n    \"ticket_sentiment\": -0.8\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/risk/score",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"risk",
+								"score"
+							]
+						},
+						"description": "Example of a high-risk student profile"
+					},
+					"response": []
+				}
+			],
+			"description": "Student risk scoring endpoints"
+		},
+		{
+			"name": "Student Profiles",
+			"item": [
+				{
+					"name": "Get Student Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/students/{{user_hash}}/profile?course_id=CS101",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"students",
+								"{{user_hash}}",
+								"profile"
+							],
+							"query": [
+								{
+									"key": "course_id",
+									"value": "CS101"
+								}
+							]
+						},
+						"description": "Get comprehensive student profile with risk assessment"
+					},
+					"response": []
+				}
+			],
+			"description": "Student profile and analytics endpoints"
+		},
+		{
+			"name": "Observability & Monitoring",
+			"item": [
+				{
+					"name": "Get System Metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/observability/metrics",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"observability",
+								"metrics"
+							]
+						},
+						"description": "Get detailed SLA and performance metrics"
+					},
+					"response": []
+				},
+				{
+					"name": "Get SLA Breaches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/observability/sla-breaches",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"observability",
+								"sla-breaches"
+							]
+						},
+						"description": "Get current SLA breach count and details"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Metrics",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/observability/reset-metrics",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"observability",
+								"reset-metrics"
+							]
+						},
+						"description": "Reset all metrics (for testing/maintenance)"
+					},
+					"response": []
+				}
+			],
+			"description": "System observability and monitoring endpoints"
+		},
+		{
+			"name": "Nudges & Notifications",
+			"item": [
+				{
+					"name": "Send Nudge",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"user_123_hash\",\n  \"message\": \"Don't forget to complete your assignment for Module 2. The deadline is approaching!\",\n  \"type\": \"reminder\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/nudge",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"nudge"
+							]
+						},
+						"description": "Send a nudge/notification to a user"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Motivational Nudge",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"user_456_hash\",\n  \"message\": \"Great progress on your deep learning course! You're 75% complete. Keep up the excellent work!\",\n  \"type\": \"motivation\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/nudge",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"nudge"
+							]
+						},
+						"description": "Send a motivational nudge to encourage student"
+					},
+					"response": []
+				}
+			],
+			"description": "User nudge and notification endpoints"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string",
+			"description": "Base URL for the hackathon API server"
+		},
+		{
+			"key": "ticket_id",
+			"value": "TICKET_001",
+			"type": "string",
+			"description": "Sample ticket ID for testing"
+		},
+		{
+			"key": "user_hash",
+			"value": "user_123_hash",
+			"type": "string",
+			"description": "Sample user hash for testing"
+		}
+	]
+}

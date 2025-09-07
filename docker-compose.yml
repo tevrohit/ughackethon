@@ -1,0 +1,82 @@
+version: "3.8"
+
+services:
+  # Frontend React + Vite development server
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - hackathon-network
+
+  # Backend FastAPI application
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - DATABASE_URL=mysql://hackathon_user:hackathon_pass@mysql:3306/hackathon_db
+      - QDRANT_URL=http://qdrant:6333
+      - OLLAMA_URL=http://host.docker.internal:11434
+      - RELOAD=true
+    depends_on:
+      - mysql
+      - qdrant
+    networks:
+      - hackathon-network
+
+  # MySQL database for tickets and user data
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_DATABASE=hackathon_db
+      - MYSQL_USER=hackathon_user
+      - MYSQL_PASSWORD=hackathon_pass
+      - MYSQL_ROOT_PASSWORD=root_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - hackathon-network
+
+  # Qdrant vector database for embeddings
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__HTTP_PORT=6333
+      - QDRANT__SERVICE__GRPC_PORT=6334
+    networks:
+      - hackathon-network
+
+volumes:
+  mysql_data:
+  qdrant_data:
+
+networks:
+  hackathon-network:
+    driver: bridge
+# Note: Ollama is expected to be installed locally and accessible at localhost:11434
+# To install Ollama locally:
+# 1. Visit https://ollama.ai and download for your platform
+# 2. Run: ollama pull llama2 (or your preferred model)
+# 3. Start Ollama service: ollama serve

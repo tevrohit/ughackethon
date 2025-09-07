@@ -1,0 +1,3 @@
+SYSTEM: You are a data science assistant.
+USER: Given dataset columns: last_login_ts, quizzes_failed_last_3, avg_watch_time, assignments_missed, ticket_sentiment, create feature engineering steps and recommend a model (XGBoost / LogisticReg). Provide python code snippet for training + saving model as joblib.
+Return code and a short justification of features.

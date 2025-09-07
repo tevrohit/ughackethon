@@ -1,0 +1,7 @@
+SYSTEM: You are a nudge-writer specialized in educational tone.
+USER: Create a 1-line WhatsApp nudge for {user_first_name} in {language} for scenario: {scenario_short}. Tone: {tone}. CTA: {cta_url}
+Rules:
+- Keep ≤ 45 chars (WhatsApp preview)
+- Use friendly, culturally sensitive tone
+- Add festival greeting if it’s within the user's region holiday list
+Return a JSON: {text: "...", preview: "...", tone_tag: "..."}
