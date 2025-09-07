@@ -276,7 +276,7 @@ function Counselor() {
                 <button
                   onClick={generatePreview}
                   disabled={loading}
-                  className="w-full bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed font-semibold text-lg transition-all duration-200 transform hover:scale-105"
+                  className="w-full bg-purple-600 text-blue py-3 px-6 rounded-lg hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed font-semibold text-lg transition-all duration-200 transform hover:scale-105"
                 >
                   {loading ? (
                     <div className="flex items-center justify-center">
@@ -393,7 +393,7 @@ function Counselor() {
                     <button
                       onClick={sendTest}
                       disabled={!testRecipient}
-                      className="w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed font-semibold transition-all duration-200 transform hover:scale-105"
+                      className="w-full bg-green-600 text-blue py-3 px-6 rounded-lg hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed font-semibold transition-all duration-200 transform hover:scale-105"
                     >
                       Send Test
                     </button>
